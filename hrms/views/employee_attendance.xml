@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Action-->
+    <record id="action_open_employees_attendance" model="ir.actions.act_window">
+        <field name="name">Row Machine Attendance</field>
+        <field name="res_model">employee.attendance</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                View Employees Attendance here!
+            </p>
+            <p>
+                Here you can see your employees attendance.
+            </p>
+        </field>
+    </record>
+
+    <!--Tree View-->
+    <record id="employee_attendance_model_view_tree_form" model="ir.ui.view">
+        <field name="name">employee.attendance.model.view.tree.form</field>
+        <field name="model">employee.attendance</field>
+        <field name="arch" type="xml">
+            <tree expand="1" multi_edit="1" create="0" default_order="id desc">
+                <field name="user_id"/>
+                <field name="user_name"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <!--                <field name="process_flag"/>-->
+                <!--                                <button name="get_attendance" string="Get Attendance" class="oe_highlight" type="object"/>-->
+
+            </tree>
+        </field>
+    </record>
+
+    <!--form view-->
+    <!--    <record id="atttendance_model_view_form" model="ir.ui.view">-->
+    <!--        <field name="name">attendance.model.view.form</field>-->
+    <!--        <field name="model">employee.attendance</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <sheet>-->
+    <!--                    <group>-->
+    <!--                        <group>-->
+    <!--                            <field name="user_id"/>-->
+    <!--                            <field name="name" />-->
+    <!--                            <field name="check_in" />-->
+    <!--                            <field name="check_out" />-->
+    <!--                            <field name="process_flag"/>-->
+    <!--                        </group>-->
+    <!--                    </group>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="employee_attendance_model_view_tree_form" model="ir.ui.view">-->
+    <!--        <field name="name">employee.attendance.model.view.tree.form</field>-->
+    <!--        <field name="model">employee.attendance</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree expand="1" default_order="id desc">-->
+    <!--                <field name="user_id" />-->
+    <!--                <field name="name" />-->
+    <!--                <field name="check_in" />-->
+    <!--                <field name="check_out" />-->
+    <!--                <field name="process_flag"/>-->
+    <!--                <button name="get_attendance" string="Get Attendance" class="oe_highlight" type="object"/>-->
+
+    <!--            </tree>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--Inherited Views-->
+    <data noupdate="1">
+        <record id="hr_employee_inherit_form_view2" model="ir.ui.view">
+            <field name="name">hr.employee.form2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="device_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+
+
+    <!--    Menu Item-->
+    <!--    <menuitem-->
+    <!--            id="menu_hrms_base"-->
+    <!--            name="HRMS"-->
+    <!--            sequence="5"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_employee_attendance"-->
+    <!--            parent="menu_hrms_base"-->
+    <!--            name="Employees Attendance"-->
+    <!--            action="action_open_employees_attendance"-->
+    <!--            sequence="5"/>-->
+
+    <menuitem id="menu_machine_integration_view"
+              name="Machine Integration"
+              parent="hr_attendance.menu_hr_attendance_root"
+              sequence="30"
+              groups="hr_attendance.group_hr_attendance_user"/>
+
+    <menuitem id="menu_row_attendance_data_view"
+              name="Row Attendance Data"
+              parent="menu_machine_integration_view"
+              sequence="30"
+              action="action_open_employees_attendance"
+              groups="hr_attendance.group_hr_attendance_user"/>
+
+</odoo>
