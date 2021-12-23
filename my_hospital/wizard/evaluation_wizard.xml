@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Form View-->
+    <record id="view_evaluation_model_wizard_form" model="ir.ui.view">
+        <field name="name">evaluation.model.wizard.form</field>
+        <field name="model">evaluation.model.wizard</field>
+<!--        <field name="report_action">evaluation.model.wizard</field>-->
+        <field name="arch" type="xml">
+            <form string="Evaluation Report">
+                <group>
+
+                    <field name="patient_id"/>
+
+                </group>
+                <footer>
+                    <button id="btn_print_report" name="action_print_report" string="Print Report"
+                            class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_evaluation_model_wizard" model="ir.actions.act_window">
+        <field name="name">Evaluation Report</field>
+        <field name="res_model">evaluation.model.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_my_report_root"
+            parent="menu_my_hospital_base"
+            name="Reports"
+            sequence="6"/>
+    <menuitem
+            id="menu_my_wizard_root"
+            parent="menu_my_report_root"
+            name="Evaluation Wizard"
+            action="action_open_evaluation_model_wizard"
+            sequence="5"/>
+</odoo>

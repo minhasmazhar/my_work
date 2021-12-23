@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    actions-->
+    <record id='library_member_action' model='ir.actions.act_window'>
+        <field name="name">Library Members</field>
+        <field name="res_model">library.member</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create books!</p>
+        </field>
+    </record>
+
+    <!--Menu Items-->
+
+    <menuitem name="Members"
+              id="library_member_menu"
+              parent="library_base_menu"
+              action="library_member_action"
+    />
+
+    <!--    Form View-->
+    <record id="library_member_view_form" model="ir.ui.view">
+        <field name="name">Library Member Form</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="date_start"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--        Tree (List) View-->
+    <record id="library_member_view_tree" model="ir.ui.view">
+        <field name="name">Library Members List</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="partner_id"/>
+                <field name="date_start"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--        Search-->
+    <!--    <record id="library_book_view_search" model="ir.ui.view">-->
+    <!--        <field name="name">Library Book Search</field>-->
+    <!--        <field name="model">library.book</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search>-->
+    <!--                <field name="name"/>-->
+    <!--                <field name="author_ids"/>-->
+    <!--                <filter string="No Authors"-->
+    <!--                        name="without_author"-->
+    <!--                        domain="[('author_ids','=',False)]"/>-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+</odoo>

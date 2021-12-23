@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template" model="mail.template">
+            <field name="name">Email Template</field>
+            <field name="model_id" ref="my_hospital.model_employee_model"/>
+            <field name="email_from">minhas@galaxyitc.com</field>
+            <field name="email_to">minhasmazhar420@gmail.com</field>
+            <field name="subject">Ref ${object.name or 'n/a' }</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Hi</p>
+                <br/>
+                <p>Here is the details of open invoices</p>
+                <br/>
+                 ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

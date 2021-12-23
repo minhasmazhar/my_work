@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Reports-->
+    <record id="report_evaluation_card" model="ir.actions.report">
+        <field name="name">Evaluation Card</field>
+        <field name="model">evaluation.model</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">my_hospital.report_evaluation</field>
+        <field name="report_file">my_hospital.report_evaluation</field>
+        <!--        <field name="print_report_name">'Evaluation Card - %s' % (object.name)</field>-->
+        <field name="binding_model_id" ref="model_evaluation_model"/>
+    </record>
+
+    <record id="report_doctor_cards" model="ir.actions.report">
+        <field name="name">Doctors Detail</field>
+        <field name="model">doctor.model</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">my_hospital.report_doctor</field>
+        <field name="report_file">my_hospital.report_doctor</field>
+        <field name="paperformat_id" ref="my_hospital.paperformat_custom" />
+        <field name="binding_model_id" ref="model_doctor_model"/>
+    </record>
+
+
+    <record id="report_employees_xls" model="ir.actions.report">
+        <field name="name">Employees Report</field>
+        <field name="model">employee.model</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">my_hospital.report_employee_xls</field>
+        <field name="report_file">my_hospital.employee_xlsx</field>
+        <field name="binding_model_id" ref="model_employee_model"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_employees_wizard_xls" model="ir.actions.report">
+        <field name="name">Employees Report (Wizard)</field>
+        <field name="model">employee.model</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">my_hospital.report_employees_wizard_xls</field>
+        <field name="report_file">my_hospital.report_employees_wizard_xls</field>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <!--Report Templates-->
+    <template id="report_evaluation">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page" style="display:flex">
+
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                        <h2>Evaluation Details</h2>
+                        <table class="table table-sm o_main_table">
+                            <thread>
+                                <tr style="background:cyan">
+                                    <th name="th_patient" class="text_left">
+                                        <span>Patient</span>
+                                    </th>
+                                    <th name="th_doctor" class="text_left">
+                                        <span>Doctor</span>
+                                    </th>
+                                    <th name="th_nurse" class="text_left">
+                                        <span>Nurse</span>
+                                    </th>
+                                    <th name="th_date" class="text_left">
+                                        <span>Date</span>
+                                    </th>
+                                    <th name="th_diagnosis" class="text_left">
+                                        <span>Diagnosis</span>
+                                    </th>
+                                    <th name="th_recommendations" class="text_left">
+                                        <span>Recommendations</span>
+                                    </th>
+                                </tr>
+                            </thread>
+
+                            <t t-foreach="docs" t-as="o">
+
+                                <tr>
+                                    <td>
+                                        <span t-field="o.patient_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.doctor_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.nurse_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.diagnosis"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.recommendations"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                    <!--                    <div style="position: relative; width: 600px; height: 800px;">-->
+
+                    <!--                        <div style="position: absolute; bottom: 5px; ">-->
+                    <!--                            TEST (C) 2010-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="footer">
+                        <p>
+                            <p style="margin-left: 100px; float:left">Doctor</p>
+                            <p style="margin-left: 700px ">Stamp</p>
+                            <hr style="width:12%;margin-right: 65px; float: right; background-color:black"/>
+                            <!--                            <p style="margin-right: 65px; float: right;">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+                            <p style="margin-left: 85px">---------------</p>
+                        </p>
+                    </div>
+
+                </div>
+
+            </t>
+
+        </t>
+
+    </template>
+
+    <template id="report_doctor">
+
+        <!--Calling our customize report header template-->
+
+        <t t-call="my_hospital.monthly_report_header"/>
+        <!--    </t>-->
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+
+                <div class="page">
+                    <div class="row">
+                        <!--Your report logic goes here-->
+                    </div>
+                </div>
+
+
+                <!--Calling our customize report footer template-->
+
+                <t t-call="my_hospital.monthly_report_footer"/>
+            </t>
+        </t>
+        <!--    </t>-->
+    </template>
+</odoo>

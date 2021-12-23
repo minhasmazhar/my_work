@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Action-->
+    <record id="action_open_evaluation" model="ir.actions.act_window">
+        <field name="name">Evaluation</field>
+        <field name="res_model">evaluation.model</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                Evaluation creation!
+            </p>
+            <p>
+                Here you can see your evaluations.
+            </p>
+        </field>
+    </record>
+
+    <!--Kanban View-->
+    <record id="evaluation_model_view_kanban" model="ir.ui.view">
+        <field name="name">evaluation.model.view.kanban</field>
+        <field name="model">evaluation.model</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="nurse_id"/>
+                <field name="date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_global_click">
+                                <ul>
+                                    <li>
+                                        <p style="font-weight:bold">Patient:
+                                            <field name="patient_id"/>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <field name="doctor_id"/>
+                                    </li>
+                                    <li>
+                                        <field name="nurse_id"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!--Tree View-->
+    <record id="evaluation_model_view_tree_form" model="ir.ui.view">
+        <field name="name">evaluation.model.view.tree.form</field>
+        <field name="model">evaluation.model</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="nurse_id"/>
+                <field name="diagnosis"/>
+<!--                <field name="sale_order_ref"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!--form view-->
+    <record id="evaluation_model_view_form" model="ir.ui.view">
+        <field name="name">evaluation.model.view.form</field>
+        <field name="model">evaluation.model</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="nurse_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="diagnosis"/>
+                            <field name="recommendations"/>
+<!--                            <field name="sale_order_ref"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    Menu Item-->
+    <menuitem
+            id="menu_my_hms"
+            parent="menu_my_hospital_base"
+            name="HMS"
+            sequence="5"/>
+    <menuitem
+            id="menu_my_evaluation"
+            parent="menu_my_hms"
+            name="Evaluation"
+            action="action_open_evaluation"
+            sequence="5"/>
+    <menuitem
+            id="submenu_my_profiles"
+            parent="menu_my_hms"
+            name="Profiles"
+            sequence="6"/>
+
+    <menuitem
+            id="submenuitem_my_patient"
+            parent="submenu_my_profiles"
+            name="Patients"
+            action="action_open_patients"
+            sequence="6"/>
+    <menuitem
+            id="submenuitem_my_doctor"
+            parent="submenu_my_profiles"
+            name="Doctors"
+            action="action_open_doctors"
+            sequence="6"/>
+    <menuitem
+            id="submenuitem_my_nurse"
+            parent="submenu_my_profiles"
+            name="Nurses"
+            action="action_open_nurses"
+            sequence="6"/>
+
+</odoo>

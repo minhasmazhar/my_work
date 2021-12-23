@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="stage_draft" model="library.rent.stage">
+        <field name="name">Draft</field>
+        <field name="sequence">1</field>
+        <field name="book_state">available</field>
+    </record>
+    <record id="stage_rent" model="library.rent.stage">
+        <field name="name">On rent</field>
+        <field name="sequence">5</field>
+        <field name="book_state">borrowed</field>
+    </record>
+    <record id="stage_due" model="library.rent.stage">
+        <field name="name">Due</field>
+        <field name="sequence">15</field>
+        <field name="book_state">borrowed</field>
+    </record>
+    <record id="stage_returned" model="library.rent.stage">
+        <field name="name">Completed</field>
+        <field name="sequence">25</field>
+        <field name="book_state">available</field>
+    </record>
+    <record id="stage_lost" model="library.rent.stage">
+        <field name="name">Lost</field>
+        <field name="sequence">35</field>
+        <field name="fold" eval="True"/>
+        <field name="book_state">lost</field>
+    </record>
+
+    <record id='library_rent_book_action' model='ir.actions.act_window'>
+        <field name="name">Library Books Rent</field>
+        <field name="res_model">library.rent.stage</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create books!</p>
+        </field>
+    </record>
+
+    <menuitem name="Books Rent"
+              id="library_books_rent_menu"
+              parent="library_base_menu"
+              action="library_rent_book_action"
+    />
+
+    <record id="library_book_rent_view_kanban" model="ir.ui.view">
+        <field name="name">Rent Kanban</field>
+        <field name="model">library.rent.stage</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="sequence">
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_card">
+                                    <div>
+                                        <i class="fa fa-user"/>
+                                        <b>
+                                            <field
+                                                    name="name"/>
+                                        </b>
+                                    </div>
+                                    <div class="text-muted">
+                                        <i class="fa fa-book"/>
+                                        <field name="sequence"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

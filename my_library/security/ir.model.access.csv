@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_library_book,access.library.book,model_library_book,group_librarian,1,1,1,1
+access_library_member,access.library.member,model_library_member,,1,1,1,1
+access_library_book_category,access.library.book.category,model_library_book_category,,1,1,1,1
+access_library_rent_stage,access.library.rent.stage,model_library_rent_stage,,1,1,1,1

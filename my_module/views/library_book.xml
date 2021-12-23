@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    actions-->
+    <record id='library_book_action' model='ir.actions.act_window'>
+        <field name="name">Library Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create books!</p>
+        </field>
+    </record>
+
+    <!--Menu Items-->
+    <menuitem name="My Library"
+              id="library_base_menu"/>
+
+    <menuitem name="Books"
+              id="library_book_menu"
+              parent="library_base_menu"
+              action="library_book_action"
+    />
+
+    <!--    Form View-->
+    <record id="library_book_view_form" model="ir.ui.view">
+        <field name="name">Library Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="make_available" string="Make Available"
+                            type="object"/>
+                    <button name="make_borrowed" string="Make Borrowed"
+                            type="object"/>
+                    <button name="make_lost" string="Make Lost"
+                            type="object"/>
+                    <button name="log_all_library_members"
+                            string="Log Members" type="object"/>
+                    <button name="change_release_date" string="Update Date" type="object"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="author_ids" widget="many2many_tags"/>
+                            <field name="state"/>
+                            <field name="pages"/>
+                            <field name="notes"/>
+                            <field name="publisher_id"/>
+                            <!--                            <field name="category_id"/>-->
+                            <field name="age_days"/>
+                            <field name="publisher_id"/>
+                            <field name="publisher_city" readonly="1"/>
+                            <field name="ref_doc_id"/>
+                        </group>
+                        <group>
+                            <field name="short_name"/>
+                            <field name="date_release"/>
+                            <field name="date_updated"/>
+                            <field name="cover" widget="image" class="oe_avatar"/>
+                            <field name="reader_rating"/>
+                            <field name="cost_price"/>
+                            <field name="retail_price"/>
+                            <field name="currency_id"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    Tree (List) View-->
+    <record id="library_book_view_tree" model="ir.ui.view">
+        <field name="name">Library Book List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+                <field name="date_release"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Search-->
+    <record id="library_book_view_search" model="ir.ui.view">
+        <field name="name">Library Book Search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_ids"/>
+                <filter string="No Authors"
+                        name="without_author"
+                        domain="[('author_ids','=',False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

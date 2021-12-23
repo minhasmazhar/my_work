@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient_model,access.patient.model,model_patient_model,,1,1,1,1
+access_doctor_model,access.doctor.model,model_doctor_model,,1,1,1,1
+access_nurse_model,access.nurse.model,model_nurse_model,,1,1,1,1
+access_evaluation_model,access.evaluation.model,model_evaluation_model,,1,1,1,1
+access_employee_model,access.employee.model,model_employee_model,,1,1,1,1
+access_department_model,access.department.model,model_department_model,,1,1,1,1
+access_tasks_model,access.tasks.model,model_tasks_model,,1,1,1,1
+access_evaluation_model_wizard,access.evaluation.model.wizard,model_evaluation_model_wizard,,1,1,1,1
+access_employee_model_wizard,access.employee.model.wizard,model_employee_model_wizard,,1,1,1,1
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Form View-->
+    <record id="view_employee_model_wizard_form" model="ir.ui.view">
+        <field name="name">employee.model.wizard.form</field>
+        <field name="model">employee.model.wizard</field>
+        <!--        <field name="report_action">evaluation.model.wizard</field>-->
+        <field name="arch" type="xml">
+            <form string="Employee Report">
+                <group>
+
+                    <field name="employee_ids" widget="many2many_tags"/>
+
+                </group>
+                <footer>
+                    <button id="btn_print_report" name="action_print_report" string="Print Excel Report"
+                            class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_employee_model_wizard" model="ir.actions.act_window">
+        <field name="name">Employee Report</field>
+        <field name="res_model">employee.model.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem
+            id="menu_my_employee"
+            parent="menu_my_report_root"
+            name="Employee Wizard"
+            action="action_open_employee_model_wizard"
+            sequence="5"/>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="monthly_report_footer"
+        >
+            <!--            <xpath expr="//div[@class='footer']" position="replace">-->
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline">
+                        <li>Developed By: Minhas</li>
+                        <li>Phone: +92 300 7204719</li>
+                        <li>Email: minhas@galaxyitc.com</li>
+                        <li>Page:
+                            <span class="page"/>/
+                            <span class="topage"/>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--            </xpath>-->
+        </template>
+    </data>
+</odoo>
